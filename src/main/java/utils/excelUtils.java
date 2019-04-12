@@ -9,6 +9,8 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 public class excelUtils {
 
+	/** Logger for teh class*/
+	private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(excelUtils.class);
 	
 	private String getHashProtectedExcel() {
 		String mensaje = "miclavesecreta";
