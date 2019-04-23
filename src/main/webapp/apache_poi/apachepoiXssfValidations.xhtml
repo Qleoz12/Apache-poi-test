@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="../template/ui.xhtml">
+	<ui:define name="header">
+		<script  src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" 
+				integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
+				 crossorigin="anonymous"></script>
+	</ui:define>
+	<ui:define name="body">
+		<h3>Validation of number of sheets's file</h3>
+		<hr />
+		<h4>PrimeFaces upload a file*</h4>
+		<h:form enctype="multipart/form-data">
+			<p:messages id="messages" showDetail="true" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+			<sectoion>
+			In this example by default validate  the number of sheets equal to 1 and the name of taht sheet equal to "cargaMasiva"
+			</sectoion>
+			<br></br>
+			<p:commandButton value="numero de hojas" icon="fab fa-accusoft" disabled=""/>
+            <p:inputText placeholder="NumbSheets" />   
+            <br></br>
+            <p:commandButton value="nombre del libro" icon="far fa-file-excel" disabled=""/>
+            <p:inputText placeholder="NumbSheets" />  
+			
+			<hr />
+			<p:remoteCommand 
+				name="test" 
+				actionListener="#{validator.checkDocument}"/>
+			<p:fileUpload 
+				fileUploadListener="#{validator.handleFileUpload}"
+				value="#{validator.file}" 
+				mode="simple"
+				skinSimple="true"
+				oncomplete="test();"
+				 update="messages"
+		        sizeLimit="100000" 
+		        allowTypes="/(\.|\/)(xls|xlsx)$/"
+				 />
+			<br/>
+			<br/>
+			<p:commandButton 
+				value="Submit" 
+				ajax="false"
+				action="#{validator.upload}" disabled="#{validator.enableButtonUpload}" />
+		</h:form>
+
+
+<script>
+  
+</script>
+
+	</ui:define>
+</ui:composition>
